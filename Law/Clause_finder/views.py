@@ -25,20 +25,24 @@ class AnalyzeDocumentView(APIView):
 
         # Prompt for Gemini
         prompt = f"""
-You are a legal AI assistant. Analyze the following legal document and:
-1. Identify how many clauses are there.
-2. Identify how many of them are dangerous.
+You are a legal AI assistant giving format wise result. Analyze the following legal document and:
+1. Identify and return number of total clauses.
+2. Identify and return number of dangerous clauses.
 3. List each dangerous clause in one line.
 4. Provide 3 practical one-line suggestions to make the document safer.
 5. Give a proofreading score (0–100).
-while following the pattern example 
+while following the blueprint
 
-  "id": 1,
-  "Total_Clauses": 10,
-  "Dangerous_Clauses": 4,
-  "suggestions_generated": "...",
-  "suggestions": 3,
-  "Proofreading_score": 85
+   "id":string,
+  "Text":shortened text of the input text(string),
+  "Total_Clauses":number,
+  "Dangerous_Clause":number,
+  "Generated_Suggestions_Number":number,
+  "ProofReading_Score":number,
+  "Risk_Summary":string,
+  "Dangerous_Clauses":string[]
+  "Suggestions":string[],
+  "Proofreading_Fixes":string[]
 
 Legal Document:
 {text}
